@@ -5,14 +5,13 @@ public:
         if(s==1){
             return nums[0];
         }
-        vector<int> n=nums;
-        
+        int curr=0;
         while(s>1){
             for(int i=0;i<nums.size()-1;i++){
-                n[i]=(n[i]+n[i+1])%10;
+                curr=nums[i];
+                nums[i]=(curr+nums[i+1])%10;
             }
             s--;
-            nums=n;
         }
         return nums[0];
     }

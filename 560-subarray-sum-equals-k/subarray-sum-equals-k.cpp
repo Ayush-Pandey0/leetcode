@@ -1,25 +1,24 @@
-#include <bits/stdc++.h>
+#include <vector>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        unordered_map<int, int> prefixSumCount;
-        prefixSumCount[0] = 1; // to handle subarrays starting at index 0
+        unordered_map<int, int> mp;
+        int count = 0, sum = 0;
 
-        int currSum = 0;
-        int count = 0;
+        for (int i : nums) {
+            sum += i;
 
-        for (int num : nums) {
-            currSum += num;
+            // check if subarray starts from index 0
+            if (sum == k) count++;
 
-            // check if (currSum - k) exists
-            if (prefixSumCount.find(currSum - k) != prefixSumCount.end()) {
-                count += prefixSumCount[currSum - k];
+            if (mp.find(sum - k) != mp.end()) {
+                count += mp[sum - k];
             }
 
-            // store current prefix sum
-            prefixSumCount[currSum]++;
+            mp[sum]++;
         }
 
         return count;

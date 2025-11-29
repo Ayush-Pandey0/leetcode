@@ -5,14 +5,6 @@ public:
         for(int i:nums){
             sum+=i;
         }
-            int count=0;
-        if(sum%k==0) return 0;
-        else{
-            while(sum%k!=0){
-                sum--;
-                count++;
-            }
-        }
-        return count;
+        return sum%k;
     }
 };

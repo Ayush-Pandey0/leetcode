@@ -11,7 +11,6 @@ class Solution {
             }
             if(height[i]>=height[j]) j--;
             else i++;
-            // (height[i]<=height[j])?i++:j--;
         }
         return area;
     }

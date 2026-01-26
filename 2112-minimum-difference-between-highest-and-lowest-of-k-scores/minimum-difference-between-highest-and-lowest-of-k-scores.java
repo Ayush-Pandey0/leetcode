@@ -2,15 +2,12 @@ import java.util.Arrays;
 
 class Solution {
     public int minimumDifference(int[] nums, int k) {
-        if (k == 1) return 0;
-
         Arrays.sort(nums);
-        int ans = Integer.MAX_VALUE;
-
-        for (int i = 0; i + k - 1 < nums.length; i++) {
-            ans = Math.min(ans, nums[i + k - 1] - nums[i]);
+        if(k==1) return 0;
+        int m=Integer.MAX_VALUE;
+        for(int i=0;i+k-1<nums.length;i++){
+            m=Math.min(nums[i+k-1]-nums[i],m);
         }
-
-        return ans;
+        return m;
     }
 }

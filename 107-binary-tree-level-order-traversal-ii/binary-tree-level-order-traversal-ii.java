@@ -32,9 +32,9 @@ class Solution {
                 if(node.right!=null) q.add(node.right);
 
             }
-            l.add(level);
+            l.addFirst(level);
         }
-        Collections.reverse(l);
+        // Collections.reverse(l);
         return l;
     }
 }

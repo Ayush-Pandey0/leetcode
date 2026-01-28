@@ -9,8 +9,7 @@ class Solution {
             int mid=start+(end-start)/2;
             long sumh=0;
             for (int p : piles) {
-                sumh += Math.ceil((double)p / mid);
-
+                sumh += (p + mid - 1) / mid; // ceil(p / mid)
             }
             if(sumh>h){
                 start=mid+1;

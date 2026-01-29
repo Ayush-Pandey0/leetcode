@@ -1,4 +1,5 @@
 class Solution {
+    
     public int shipWithinDays(int[] weights, int days) {
         int mini=weights[0];
         int wholesum=0;
@@ -19,7 +20,7 @@ class Solution {
                 }
                 sum+=i;
             }
-            if((c<=days) ){
+            if(c<=days){
                 maxi=mid-1;
                 miniday=mid;
             }

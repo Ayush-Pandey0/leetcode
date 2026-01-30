@@ -7,7 +7,7 @@ class Solution {
         while(low<=high){
             int mid=low+(high-low)/2;
             mini=Math.min(mini,nums[mid]);
-            if(nums[mid]>=nums[high]){
+            if(nums[mid]>nums[high]){
                 low=mid+1;
             }
             else{

@@ -1,25 +1,33 @@
 class Solution {
+    public long calculatehour(int[] piles,int h){
+        long sumh=0;
+        for(int i:piles){
+            sumh += (long) Math.ceil((double) i / h);
+
+        }
+        return sumh;
+    }
     public int minEatingSpeed(int[] piles, int h) {
-        Arrays.sort(piles);
-        int n=piles.length-1;
-        int start=1;
-        int end=piles[n];
-        int ans=0;
-        while(start<=end){
-            int mid=start+(end-start)/2;
-            long sumh=0;
-            for (int p : piles) {
-                sumh += (p + mid - 1) / mid; // ceil(p / mid)
-            }
-            if(sumh>h){
-                start=mid+1;
+        int low = 1;
+        int high = 0;
+
+        for (int p : piles) {
+            high = Math.max(high, p);
+        }
+
+        int ans = high;
+
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            long newans=calculatehour(piles,mid);
+            if(newans<=h){
+                ans=mid;
+                high=mid-1;
             }
             else{
-                ans=mid;
-                end=mid-1;
+                low=mid+1;
             }
         }
         return ans;
-
     }
 }

@@ -10,8 +10,7 @@ class Solution {
         }
 
         for(int e:deck){
-            int i=q.peek();
-            q.poll();
+            int i=q.poll();
             ans[i]=e;
             if(!q.isEmpty()){
                 q.add(q.poll());

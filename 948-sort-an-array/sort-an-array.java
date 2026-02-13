@@ -35,7 +35,7 @@ class Solution {
     }
 
     public void merges(int[] nums, int low, int high) {
-        if (low == high)
+        if (low >= high)
             return;
         int mid = low + (high - low) / 2;
         merges(nums, low, mid);

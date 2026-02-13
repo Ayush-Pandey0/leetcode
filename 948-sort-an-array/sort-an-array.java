@@ -1,13 +1,13 @@
 class Solution {
     public void sorting(int[] nums,int low,int mid,int high){
-        int[] temp=new int[high+1];
+        int[] temp=new int[high-low+1];
 
         int i=low;
         int j=mid+1;
 
         int count=0;
         while(i<=mid&&j<=high){
-            if(nums[i]<nums[j]){
+            if(nums[i]<=nums[j]){
                 temp[count]=nums[i];
                 i++;
             }

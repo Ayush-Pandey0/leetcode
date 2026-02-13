@@ -19,7 +19,8 @@ class Solution {
         sortb(ans);
         int count=0;
         for(int i=0;i<n;i++){
-            if(heights[i]!=ans[i]) count++;
+            if(heights[i]==ans[i]) continue;
+            count++;
         }
         return count;
     }

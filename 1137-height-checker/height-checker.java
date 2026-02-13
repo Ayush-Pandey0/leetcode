@@ -2,7 +2,7 @@ class Solution {
     public void sortb(int[] heights){
         for(int i=0;i<heights.length;i++){
             int smallest=i;
-            for(int j=i;j<heights.length;j++){
+            for(int j=i+1;j<heights.length;j++){
                 if(heights[j]<heights[smallest]){
                     smallest=j;
                 }

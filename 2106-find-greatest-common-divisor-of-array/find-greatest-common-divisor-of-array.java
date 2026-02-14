@@ -1,21 +1,49 @@
 class Solution {
     public int findGCD(int[] nums) {
-        int max=Integer.MIN_VALUE;
-        int min=Integer.MAX_VALUE;
-        for(int i:nums){
-            if(i<min){
-                min=i;
-            }
-            if(i>max){
-                max=i;
-            }
-        }
-        int maxdiv = 1; // start from 1 (GCD can't be less than 1)
-        for (int i = 1; i <= min; i++) {
-            if (min % i == 0 && max % i == 0) {
-                maxdiv = i; // update whenever we find a common divisor
-            }
-        }
-        return maxdiv;
+        merges(nums,0,nums.length-1);
+        int min=nums[0];
+        int max=nums[nums.length-1];
+        return gcd(min,max);
     }
+    public int gcd(int min,int max){
+        if(max==0) return min;
+        return gcd(max,min%max);
+    }
+    public void merges(int[] nums,int low,int high){
+        if(low>=high) return;
+        int mid=low+(high-low)/2;
+
+        merges(nums,low,mid);
+        merges(nums,mid+1,high);
+
+        sorting(nums,low,mid,high);
+    }
+    public void sorting(int[] nums,int low,int mid,int high){
+        int temp[]=new int[high-low+1];
+
+        int i=low;
+        int j=mid+1;
+        int count=0;
+        while(i<=mid&&j<=high){
+            if(nums[i]<=nums[j]){
+                temp[count++]=nums[i];
+                i++;
+            }
+            else{
+                temp[count++]=nums[j++];
+            }
+        }
+        while(i<=mid){
+            temp[count++]=nums[i++];
+        }
+        while(j<=high){
+            temp[count++]=nums[j++];
+        }
+
+        for(int k=0;k<temp.length;k++){
+            nums[k+low]=temp[k];
+        }
+
+    }
+
 }

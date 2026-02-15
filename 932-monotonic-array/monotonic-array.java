@@ -1,6 +1,6 @@
 class Solution {
     public boolean isMonotonic(int[] nums) {
-        // if(nums.length < 2) return true;
+        if(nums.length < 2) return true;
         boolean in = false;
         boolean de = false;
 

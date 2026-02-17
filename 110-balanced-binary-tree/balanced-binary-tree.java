@@ -1,6 +1,6 @@
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        return check(root) != -1;
+        return check(root)!= -1;
     }
 
     int check(TreeNode node) {

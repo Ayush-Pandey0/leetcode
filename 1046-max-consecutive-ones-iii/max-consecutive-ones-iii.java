@@ -13,8 +13,8 @@ class Solution {
                 if(nums[l]==0) zero--;
                 l++;
             }
-            ans=Math.max(ans,(r-l+1));
             r++;
+            ans=Math.max(ans,(r-l));
         }
         return ans;
     }

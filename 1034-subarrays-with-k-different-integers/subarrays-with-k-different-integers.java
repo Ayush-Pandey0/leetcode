@@ -1,27 +1,35 @@
 class Solution {
-
     public int subarraysWithKDistinct(int[] nums, int k) {
-        return atMostK(nums, k) - atMostK(nums, k - 1);
+        return solve(nums,k)-solve(nums,k-1);
     }
 
-    private int atMostK(int[] nums, int k) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int l = 0;
-        int count = 0;
+    private int solve(int[]nums, int k){
+        int  n=nums.length;
+        int[] hash= new int[n+1];
+        int i=0;
+        int sub=0;
+        
+        int distint=0;
 
-        for (int r = 0; r < nums.length; r++) {
-            map.put(nums[r], map.getOrDefault(nums[r], 0) + 1);
+        for(int j=0;j<n;j++){
+            if(hash[nums[j]]==0)
+            distint++;
+            hash[nums[j]]++;
 
-            while (map.size() > k) {
-                map.put(nums[l], map.get(nums[l]) - 1);
-                if (map.get(nums[l]) == 0)
-                    map.remove(nums[l]);
-                l++;
+            while(distint>k){
+                hash[nums[i]]--;
+                if(hash[nums[i]]==0)
+                distint--;
+                i++;
+                
             }
 
-            count += r - l + 1;
-        }
+            
+            sub+=j-i+1;
 
-        return count;
+
+
+        }
+        return sub;
     }
 }

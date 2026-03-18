@@ -18,7 +18,8 @@ class Solution {
         return find(root.right,root.left);
     }
     boolean find(TreeNode p,TreeNode q){
-        if(p==null||q==null) return p==q;
+        if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
         if(p.val!=q.val) return false;
         if(!find(p.left,q.right)) return false;
         if(!find(p.right,q.left)) return false;

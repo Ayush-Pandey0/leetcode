@@ -24,6 +24,5 @@ class Solution {
         if(ans.size()==level) ans.add(node.val);
         dfs(node.right,level+1,ans);
         dfs(node.left,level+1,ans);
-        return;
     }
 }

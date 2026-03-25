@@ -19,8 +19,8 @@ class Solution {
         dfs(root,0,ans);
         return ans;
     }
-    void dfs(TreeNode node,int level,List<Integer> ans){
-        if(node==null) return;
+    public void dfs(TreeNode node,int level,List<Integer> ans){
+        if(node==null) return ;
         if(ans.size()==level) ans.add(node.val);
         dfs(node.right,level+1,ans);
         dfs(node.left,level+1,ans);

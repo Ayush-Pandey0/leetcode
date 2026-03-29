@@ -16,14 +16,14 @@
 class Solution {
     int sum=Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        height(root);
+        solve(root);
         return sum;
     }
-    int height(TreeNode root){
-        if(root==null) return 0;
-        int left=Math.max(0,height(root.left));
-        int right=Math.max(0,height(root.right));
-        sum=Math.max(sum,left+right+root.val);
-        return root.val+Math.max(left,right);
+    public int solve(TreeNode node){
+        if(node==null) return 0;
+        int left=Math.max(0,solve(node.left));
+        int right=Math.max(0,solve(node.right));
+        sum=Math.max(sum,left+right+node.val);
+        return node.val+Math.max(left,right);
     }
 }

@@ -22,12 +22,12 @@ class Solution {
         q.offer(new Pair(root, 0));
         while (!q.isEmpty()) {
             int size = q.size();
-            int minindex=q.peek().index;
+            // int minindex=q.peek().index;
             int first = 0, last = 0;
             for (int i = 0; i < size; i++) {
                 Pair p = q.poll();
                 TreeNode node=p.node;
-                int ind=p.index-minindex;
+                int ind=p.index;
 
                 if(i==0)  first=ind;
                 if(i==size-1)  last=ind;

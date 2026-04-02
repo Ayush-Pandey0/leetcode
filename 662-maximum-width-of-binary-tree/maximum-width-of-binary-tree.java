@@ -28,9 +28,8 @@ class Solution {
                 Pair p = q.poll();
                 TreeNode node=p.node;
                 int ind=p.index;
-
-                if(i==0)  first=ind;
-                if(i==size-1)  last=ind;
+                if(i==0)  first=p.index;
+                if(i==size-1)  last=p.index;
 
                 if(node.left!=null) {
                     q.offer(new Pair(node.left,2*ind+1));

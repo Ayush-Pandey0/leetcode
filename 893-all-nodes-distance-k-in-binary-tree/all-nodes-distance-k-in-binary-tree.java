@@ -8,60 +8,60 @@
  * }
  */
 class Solution {
-    public void markparent(TreeNode root, Map<TreeNode, TreeNode> parent) {
+    void buildparent(TreeNode root, Map<TreeNode, TreeNode> parent) {
         Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
+        q.offer(root);
         while (!q.isEmpty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = q.poll();
-                if (node.left != null) {
-                    q.add(node.left);
-                    parent.put(node.left,node);
-                }
-                if (node.right != null) {
-                    q.add(node.right);
-                    parent.put(node.right,node);
-                }
+            TreeNode node = q.poll();
+            if (node.left != null) {
+                parent.put(node.left, node);
+                q.offer(node.left);
+            }
+            if (node.right != null) {
+                parent.put(node.right, node);
+                q.offer(node.right);
             }
         }
     }
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        List<Integer> ans=new ArrayList<>();
-        Map<TreeNode,TreeNode> parent=new HashMap<>();
-        markparent(root,parent);
+        List<Integer> ans = new ArrayList<>();
+
+        Map<TreeNode, TreeNode> parent = new HashMap<>();
+        buildparent(root, parent);
 
         Set<TreeNode> visited = new HashSet<>();
-         visited.add(target);
+        visited.add(target);
 
-        Queue<TreeNode> q=new LinkedList<>();
-        q.add(target);
-        int distance=0;
-        while(!q.isEmpty()){
-            int size=q.size();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(target);
+
+        int distance = 0;
+        while (!q.isEmpty()) {
             if(distance==k) break;
-            distance++;
+            int size=q.size();
+            
             for(int i=0;i<size;i++){
-                TreeNode curr=q.poll();
-                if(curr.left!=null&&!visited.contains(curr.left)){
-                    q.offer(curr.left);
-                    visited.add(curr.left);
+                TreeNode node=q.poll();
+                if(node.left!=null&&!visited.contains(node.left)){
+                    q.offer(node.left);
+                    visited.add(node.left);
                 }
-                if(curr.right!=null&&!visited.contains(curr.right)){
-                    q.offer(curr.right);
-                    visited.add(curr.right);
+                if(node.right!=null&&!visited.contains(node.right)){
+                    q.offer(node.right);
+                    visited.add(node.right);
                 }
-                if(parent.get(curr)!=null&&!visited.contains(parent.get(curr))){
-                    q.offer(parent.get(curr));
-                    visited.add(parent.get(curr));
+                if(parent.get(node)!=null&&!visited.contains(parent.get(node))){
+                    q.offer(parent.get(node));
+                    visited.add(parent.get(node));
                 }
             }
+            distance++;
         }
-
         while(!q.isEmpty()){
             ans.add(q.poll().val);
         }
         return ans;
     }
+
 }

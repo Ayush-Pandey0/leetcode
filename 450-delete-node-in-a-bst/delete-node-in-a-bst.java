@@ -16,42 +16,23 @@
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
         if(root==null) return root;
-        if(root.val==key){
-            return helper(root);
+        if(key<root.val){
+            root.left=deleteNode(root.left,key);
         }
-        TreeNode curr=root;
-        while(curr!=null){
-            if(key<curr.val){
-                if(curr.left!=null&&curr.left.val==key){
-                    curr.left=helper(curr.left);
-                }else{
-                    curr=curr.left;
-                }
+        else if(key>root.val){
+            root.right=deleteNode(root.right,key);
+        }
+        else{
+            if(root.left==null) return root.right;
+            if(root.right==null) return root.left;
+            TreeNode temp=root.right;
+            while(temp.left!=null){
+                temp=temp.left;
             }
-            else {
-                if(curr.right!=null&&curr.right.val==key){
-                    curr.right=helper(curr.right);
-                }else{
-                    curr=curr.right;
-                }
-            }
+            root.val=temp.val;
+            root.right=deleteNode(root.right,temp.val);
         }
         return root;
-    }
-    public TreeNode helper(TreeNode node){
-        if(node.left==null){
-            return node.right;
-        }else if(node.right==null){
-            return node.left;
-        }
-        TreeNode lefty=node.left;
-        if(lefty!=null){
-            while(lefty.right!=null){
-                lefty=lefty.right;
-            }
-            lefty.right=node.right;
-            
-        }
-        return node.left;
+
     }
 }

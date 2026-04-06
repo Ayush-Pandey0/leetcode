@@ -15,19 +15,19 @@
  */
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
-        if(root==null) return null;
         TreeNode curr=root;
-        if(root.val==key) return helper(root);
+        if(root==null) return null;
+        if(root.val==key) return helper(root); 
         while(curr!=null){
             if(key<curr.val){
-                if(curr.left!=null&&curr.left.val==key){
+                if(curr.left!=null&&key==curr.left.val){
                     curr.left=helper(curr.left);
-                }else{
+                }
+                else{
                     curr=curr.left;
                 }
-            }
-            else{
-                if(curr.right!=null&&curr.right.val==key){
+            }else{
+                if(curr.right!=null&&key==curr.right.val){
                     curr.right=helper(curr.right);
                 }else{
                     curr=curr.right;
@@ -39,11 +39,11 @@ class Solution {
     TreeNode helper(TreeNode node){
         if(node.left==null) return node.right;
         if(node.right==null) return node.left;
-        TreeNode curr=node.left;
-        while(curr.right!=null){
-            curr=curr.right;
+        TreeNode temp=node.left;
+        while(temp.right!=null){
+            temp=temp.right;
         }
-        curr.right=node.right;
+        temp.right=node.right;
         return node.left;
     }
 }

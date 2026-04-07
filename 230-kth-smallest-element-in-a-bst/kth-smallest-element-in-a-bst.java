@@ -22,7 +22,7 @@ class Solution {
         
     }
     void helper(TreeNode root,int k){
-        if(root==null) return ;
+        if(root==null||count>k) return ;
         helper(root.left,k);
         count++;
         if(count==k){

@@ -10,9 +10,9 @@ class Solution {
             mp.put(c,mp.getOrDefault(c,0)+1);
             while(mp.get(c)>1){
                 mp.put(s.charAt(l),mp.get(s.charAt(l))-1);
-                // if(mp.get(s.charAt(l))==0){
-                //     mp.remove(s.charAt(l));
-                // }
+                if(mp.get(s.charAt(l))==0){
+                    mp.remove(s.charAt(l));
+                }
                 l++;
             }
             maxlen=Math.max(maxlen,(r-l+1));

@@ -5,7 +5,7 @@ class Solution {
         int visited[] = new int[n];
         for (int i = 0; i < n; i++) {
             if (visited[i] == 0) {
-                Queue<Integer> q = new LinkedList<>();
+                Queue<Integer> q = new ArrayDeque<>();
                 q.add(i);
                 visited[i] = 1;
                 while (!q.isEmpty()) {

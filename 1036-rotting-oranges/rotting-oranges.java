@@ -1,52 +1,54 @@
-class Pair {
-    int row;
-    int col;
-
-    Pair(int row, int col) {
-        this.row = row;
-        this.col = col;
-    }
-}
-
 class Solution {
     public int orangesRotting(int[][] grid) {
+        
         int n = grid.length;
         int m = grid[0].length;
 
-        Queue<Pair> q = new LinkedList<>();
         int fresh = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (grid[i][j] == 2) {
-                    q.add(new Pair(i, j));
-                } else if (grid[i][j] == 1) {
+        Queue<int[]> q = new LinkedList<>();
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==2){
+                    q.add(new int[]{i,j});
+                }else if(grid[i][j]==1){
                     fresh++;
                 }
             }
         }
-        int[] dx = { -1, 1, 0, 0 };
-        int[] dy = { 0, 0, -1, 1 };
+
+        if(fresh == 0) return 0;
+
+        int dx[]={-1,1,0,0};
+        int dy[]={0,0,-1,1};
+
         int time=0;
-        while (!q.isEmpty() && fresh > 0) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                Pair p = q.poll();
-                int row = p.row;
-                int col = p.col;
+
+        while(!q.isEmpty()){
+            int size=q.size();
+            boolean rotted = false;
+
+            for(int i=0;i<size;i++){
+                int[] node=q.poll();
+                int x=node[0];
+                int y=node[1];
+
                 for(int j=0;j<4;j++){
-                    int x=dx[j]+row;
-                    int y=dy[j]+col;
-                    if(x>=0&&y>=0&&x<n&&y<m&&grid[x][y]==1){
-                        grid[x][y]=2;
+                    int newx=dx[j]+x;
+                    int newy=dy[j]+y;
+
+                    if(newx>=0 && newy>=0 && newx<n && newy<m && grid[newx][newy]==1){
+                        grid[newx][newy]=2;
+                        q.add(new int[]{newx,newy});
                         fresh--;
-                        q.add(new Pair(x,y));
+                        rotted = true;
                     }
                 }
             }
-            time++;
 
+            if(rotted) time++; // ⭐ correct place
         }
-        return fresh==0?time:-1;
 
+        return (fresh==0)?time:-1;
     }
 }

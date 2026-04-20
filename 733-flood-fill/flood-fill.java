@@ -2,18 +2,15 @@ class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
         int n=image.length;
         int m=image[0].length;
-        
         Queue<int[]> q=new LinkedList<>();
         int faah=image[sr][sc];
+        if(faah == color) return image;
         q.add(new int[]{sr,sc});
         image[sr][sc]=color;
 
         int []dx={-1,1,0,0};
         int []dy={0,0,-1,1};
-        int c=m*n;
-        int count=0;
-        while(!q.isEmpty()&&count<c){
-            count++;
+        while(!q.isEmpty()){
             int node[]=q.poll();
             int a=node[0];
             int b=node[1];

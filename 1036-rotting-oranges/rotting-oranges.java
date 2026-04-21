@@ -1,54 +1,39 @@
 class Solution {
     public int orangesRotting(int[][] grid) {
-        
-        int n = grid.length;
-        int m = grid[0].length;
-
-        int fresh = 0;
-        Queue<int[]> q = new LinkedList<>();
-
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]==2){
+        Queue<int[]> q=new LinkedList<>();
+        int fresh=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(grid[i][j]==2) {
                     q.add(new int[]{i,j});
-                }else if(grid[i][j]==1){
+                }else if(grid[i][j]==1)
                     fresh++;
-                }
             }
         }
-
-        if(fresh == 0) return 0;
-
         int dx[]={-1,1,0,0};
         int dy[]={0,0,-1,1};
-
         int time=0;
-
         while(!q.isEmpty()){
+            boolean rotten=false;
             int size=q.size();
-            boolean rotted = false;
-
             for(int i=0;i<size;i++){
-                int[] node=q.poll();
-                int x=node[0];
-                int y=node[1];
-
+                int node[]=q.poll();
+                int a=node[0];
+                int b=node[1];
                 for(int j=0;j<4;j++){
-                    int newx=dx[j]+x;
-                    int newy=dy[j]+y;
+                    int x=dx[j]+a;
+                    int y=dy[j]+b;
 
-                    if(newx>=0 && newy>=0 && newx<n && newy<m && grid[newx][newy]==1){
-                        grid[newx][newy]=2;
-                        q.add(new int[]{newx,newy});
+                    if(x>=0&&y>=0&&x<grid.length&&y<grid[0].length&&grid[x][y]==1){
                         fresh--;
-                        rotted = true;
+                        grid[x][y]=2;
+                        q.add(new int[]{x,y});
+                        rotten=true;
                     }
                 }
             }
-
-            if(rotted) time++; // ⭐ correct place
+            if(rotten) time++;
         }
-
         return (fresh==0)?time:-1;
     }
 }

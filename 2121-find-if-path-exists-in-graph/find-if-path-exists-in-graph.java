@@ -12,12 +12,8 @@ class Solution {
         }
 
         int visited[]=new int[n];
-        for(int i=0;i<n;i++){
-            if(visited[i]==0){
-                if(dfs(source,destination,adj,visited)) return true;
-            }
-        }
-        return false;
+        
+        return dfs(source,destination,adj,visited);
     }
     boolean dfs(int source,int destination,ArrayList<ArrayList<Integer>> adj,int[] visited){
         visited[source]=1;

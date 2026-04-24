@@ -16,6 +16,7 @@ class Solution {
         q.add(new Pair(beginWord,1));
         s.remove(beginWord);
 
+        if(!s.contains(endWord)) return 0;
         while(!q.isEmpty()){
             Pair p=q.poll();
             String current=p.s;

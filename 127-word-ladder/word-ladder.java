@@ -1,40 +1,41 @@
 class Pair{
-    String s;
-    int count;
-    Pair(String s,int count){
-        this.s=s;
-        this.count=count;
+    String word;
+    int distance;
+    Pair(String word,int distance){
+        this.word=word;
+        this.distance=distance;
     }
 }
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> s=new HashSet<>();
-        Queue<Pair> q=new LinkedList<>();
-        for(String i:wordList){
-            s.add(i);
+        for(String c:wordList){
+            s.add(c);
         }
+        Queue<Pair> q=new LinkedList<>();
         q.add(new Pair(beginWord,1));
         s.remove(beginWord);
-
-        if(!s.contains(endWord)) return 0;
         while(!q.isEmpty()){
-            Pair p=q.poll();
-            String current=p.s;
-            int c=p.count;
-            if(current.equals(endWord)) return c;
-            for(int i=0;i<current.length();i++){
-                for(char mc='a';mc<='z';mc++){
-                    char replacement[]=current.toCharArray();
-                    replacement[i]=mc;
-                    String newchar=new String(replacement);
-                    if(s.contains(newchar)){
-                        q.add(new Pair(newchar,c+1));
-                        s.remove(newchar);
+            Pair d=q.poll();
+            String curr=d.word;
+            int dis=d.distance;
+            System.out.println(curr+" "+dis+" ");
+            if(curr.equals(endWord)) return dis;
+            char charArray[]=curr.toCharArray();
+            for(int i=0;i<charArray.length;i++){
+                char old=charArray[i];
+                for(char j='a';j<='z';j++){
+                    charArray[i]=j;
+
+                    String newWord=new String(charArray);
+                    if(s.contains(newWord)){
+                        q.add(new Pair(newWord,dis+1));
+                        s.remove(newWord);
                     }
                 }
+                charArray[i]=old;
             }
         }
         return 0;
-
     }
 }

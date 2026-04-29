@@ -10,7 +10,7 @@ class Solution {
             }
             i++;
             nums[i]=nums[j];
-            j++;
+            // j++;
         }
         return i+1;
     }

@@ -11,10 +11,10 @@ public:
                 }
                 count++;
             }else{
-                count--;
-                if(count>0){
+                if(count>1){
                     ans+=c;
                 }
+                count--;
             }
         }
         return ans;

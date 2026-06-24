@@ -10,9 +10,10 @@ class Solution {
         int[][] ans=new int[k][2];
         int i=0;
         while(!pq.isEmpty()){
-            int a[]=pq.poll();
-            ans[i][0]=a[0];
-            ans[i][1]=a[1];
+            // int a[]=pq.poll();
+            // ans[i][0]=a[0];
+            // ans[i][1]=a[1];
+            ans[i]=pq.poll();
             i++;
         }
         return ans;

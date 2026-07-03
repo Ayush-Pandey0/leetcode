@@ -2,10 +2,10 @@ class Solution {
     public boolean isvalid(int[]piles,int mid,int h){
         long hour=0;
         for(int i:piles){
-            int f=i/mid;
-            int d=i%mid;
-            hour+=f;
-            if(d!=0) hour++;
+            // int f=i/mid;
+            // int d=i%mid;
+            hour+=Math.ceil((double) i / mid);
+            // if(d!=0) hour++;
         }
         if(hour<=h){
             return true;

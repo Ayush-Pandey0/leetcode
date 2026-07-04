@@ -1,22 +1,23 @@
 class Solution {
     public int[] occurrencesOfElement(int[] nums, int[] queries, int x) {
-        PriorityQueue<Integer>q=new PriorityQueue<>((a,b)->a-b);
-        for(int i=0;i<nums.length;i++){
-            if(x==nums[i]) q.offer(i);
+        List<Integer> pos = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == x)
+                pos.add(i);
         }
-        int ans[]=new int[q.size()];
-        int n[]=new int[queries.length];
-        int i=0;
-        while(q.size()>0){
-            ans[i++]=q.poll();
+
+        int[] ans = new int[queries.length];
+
+        for (int i = 0; i < queries.length; i++) {
+            int k = queries[i];
+
+            if (k <= pos.size())
+                ans[i] = pos.get(k - 1);
+            else
+                ans[i] = -1;
         }
-        i=0;
-        for(int j:queries){
-            if(j<=ans.length)
-                n[i]=ans[j-1];
-            else n[i]=-1;
-            i++;
-        }
-        return n;
+
+        return ans;
     }
 }

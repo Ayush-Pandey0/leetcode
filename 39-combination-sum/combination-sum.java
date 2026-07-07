@@ -1,23 +1,22 @@
 class Solution {
-    public void find(List<List<Integer>> ans,List<Integer>curr,int []candi,int target,int sum,int i){
-        if(i==candi.length||sum>target){
-            return;
-        } 
-        if(sum==target){
+    public void recurse(List<List<Integer>> ans,List<Integer> curr,int sum,int i,int [] candi,int k){
+        if(i==candi.length||sum>k) return;
+        if(sum==k){
             ans.add(new ArrayList<>(curr));
-            // curr.clear();
             return;
         }
         curr.add(candi[i]);
-        find(ans,curr,candi,target,sum+candi[i],i);
+        recurse(ans,curr,sum+candi[i],i,candi,k);
         curr.remove(curr.size()-1);
-        find(ans,curr,candi,target,sum,i+1);
+        recurse(ans,curr,sum,i+1,candi,k);
+
     }
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        int i=0;
+    public List<List<Integer>> combinationSum(int[] candi, int k) {
+        int sum=0;
         List<List<Integer>> ans=new ArrayList<>();
         List<Integer> curr=new ArrayList<>();
-        find(ans,curr,candidates,target,0,0);
+        recurse(ans,curr,sum,0,candi,k);
         return ans;
+
     }
 }

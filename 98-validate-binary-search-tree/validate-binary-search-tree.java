@@ -14,20 +14,17 @@
  * }
  */
 class Solution {
-    TreeNode prev=null;
     int ans=1;
-    void find(TreeNode root){
-        if(root==null){
-            return;
-        }
+    TreeNode prev=null;
+    public void find(TreeNode root){
+        if(root==null) return;
         find(root.left);
-        if(prev!=null&&prev.val>=root.val) {
+        if(prev!=null&&prev.val>=root.val){
             ans=0;
             return;
         }
         prev=root;
         find(root.right);
-
     }
     public boolean isValidBST(TreeNode root) {
         find(root);

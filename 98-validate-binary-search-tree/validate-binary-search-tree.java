@@ -14,20 +14,12 @@
  * }
  */
 class Solution {
-    int ans=1;
-    TreeNode prev=null;
-    public void find(TreeNode root){
-        if(root==null) return;
-        find(root.left);
-        if(prev!=null&&prev.val>=root.val){
-            ans=0;
-            return;
-        }
-        prev=root;
-        find(root.right);
+    public boolean find(TreeNode root,long min,long max){
+        if(root==null) return true;
+        if(root.val<=min||root.val>=max) return false;
+        return find(root.left,min,root.val)&&find(root.right,root.val,max);
     }
     public boolean isValidBST(TreeNode root) {
-        find(root);
-        return (ans==1)?true:false;
+        return find(root,Long.MIN_VALUE,Long.MAX_VALUE);
     }
 }

@@ -1,21 +1,22 @@
 
 class Solution {
-    public void find(int[]nums,List<List<Integer>> ans,List<Integer>curr,int i){
+    public void recurse(List<List<Integer>> ans, List<Integer> curr,int[] nums,int i){
         if(i==nums.length){
-            if(!ans.contains(curr))
-                ans.add(new ArrayList<>(curr));
+            ans.add(new ArrayList<>(curr));
             return;
         }
         curr.add(nums[i]);
-        find(nums,ans,curr,i+1);
+        recurse(ans,curr,nums,i+1);
         curr.remove(curr.size()-1);
-        find(nums,ans,curr,i+1);
+        while(i+1 < nums.length && nums[i] == nums[i+1])
+            i++;
+        recurse(ans,curr,nums,i+1);
     }
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> ans=new ArrayList<>();
         List<Integer> curr=new ArrayList<>();
-        find(nums,ans,curr,0);
+        recurse(ans,curr,nums,0);
         return ans;
     }
 }

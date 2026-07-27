@@ -7,7 +7,7 @@ class Solution {
             if(num>max){
                 secondmax=max;
                 max=num;  
-            }else if(num<=max&&num>secondmax){
+            }else if(num>secondmax){
                 secondmax=num;
             }
         }

@@ -5,13 +5,13 @@ class Solution {
             pq.add(i);
         }
         long sum=0;
-        while(k>0){
+        int count=0;
+        while(count<k){
             int top=pq.poll();
-            sum+=top;
-            int el=(int)Math.ceil(top/3.0);
-            System.out.println(el);
-            pq.add(el);
-            k--;
+            sum += top;
+
+            pq.offer((int)Math.ceil((double)top / 3));
+            count++;
         }
         return sum;
     }

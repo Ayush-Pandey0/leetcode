@@ -13,7 +13,6 @@ class Solution {
                 }
             }
         }
-        
         int dx[]={-1,1,0,0};
         int dy[]={0,0,-1,1};
         int count=0;
@@ -28,10 +27,10 @@ class Solution {
                     int x=a+dx[j];
                     int y=b+dy[j];
                     if(x>=0&&y>=0&&x<n&&y<m&&grid[x][y]==1){
+                        fresh--;
                         grid[x][y]=2;
                         q.add(new int[]{x,y});
                         rotten=true;
-                        fresh--;
                     }
                 }
             }
@@ -39,8 +38,6 @@ class Solution {
                 count++;
             }
         }
-
         return (fresh==0)?count:-1;
-
     }
 }
